@@ -1,0 +1,15 @@
+[
+	{
+		"type": "info",
+		"args": ["User signed in"]
+	},
+	{
+		"type": "error",
+		"args": ["Error with user credentials"],
+        "user": {
+            "uid": "uuid-v4",
+            "email": "user@email.provider.com",
+            "displayName": "User Name"
+        }
+	}
+]

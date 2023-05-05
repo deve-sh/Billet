@@ -4,7 +4,7 @@ import type { Request, Response } from "express";
 import type LoggingConfig from "./types/config";
 import type Log from "./types/log";
 
-export const loggingController =
+const loggingControllerGenerator =
 	({ serviceAccount, serviceName, logName, onError }: LoggingConfig) =>
 	(req: Request, res: Response) => {
 		const { logs } = req.body as { logs: Log[] };
@@ -45,9 +45,11 @@ export const loggingController =
 					? cloudLog.error
 					: cloudLog.debug;
 			loggerFunction(logEntry).catch((error: Error | unknown) => {
-				if(onError) onError(error);
+				if (onError) onError(error);
 			});
 		}
 
 		return res.sendStatus(200);
 	};
+
+export default loggingControllerGenerator;
