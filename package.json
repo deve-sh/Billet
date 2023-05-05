@@ -4,7 +4,9 @@
 	"description": "Library to make logging to any platform from your frontend easy",
 	"main": "",
 	"scripts": {
-		"bundle-server-libs": "tsc"
+		"bundle-server-libs": "tsc",
+		"prepublish": "node scripts/pre-publish",
+		"publish": "npm run bundle-server-libs"
 	},
 	"author": "Devesh Kumar",
 	"license": "MIT",
