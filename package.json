@@ -1,0 +1,15 @@
+{
+	"name": "gcflog",
+	"version": "0.0.1",
+	"description": "Library to make logging to GCP from your frontend easy",
+	"main": "",
+	"scripts": {},
+	"author": "Devesh Kumar",
+	"license": "MIT",
+	"dependencies": {
+		"@google-cloud/logging": "^10.4.1"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.17"
+	}
+}
