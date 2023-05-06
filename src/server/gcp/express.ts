@@ -1,21 +1,31 @@
-import { Logging, type Log as LogFunction } from "@google-cloud/logging";
+import { Logging } from "@google-cloud/logging";
 import type { Request, Response } from "express";
 
 import type LoggingConfig from "./types/config";
 import type Log from "./types/log";
 
-const generateLogMetadata = (
-	serviceName: string,
-	{
-		user,
-		uniqueIdentifiers,
-	}: { user?: Log["user"]; uniqueIdentifiers?: Log["uniqueIdentifiers"] }
-) => {
+const generateLogMetadata = (serviceName: string, log: Log) => {
 	return {
 		resource: {
 			type: "global",
-			labels: { service_name: serviceName, ...user, ...uniqueIdentifiers },
+			labels: { service: serviceName },
 		},
+		severity: log.level.toUpperCase(),
+	};
+};
+
+const formatLog = (log: Log) => {
+	const logContentIfObject = log.logContent as {
+		message?: string;
+		messages?: string[];
+	};
+	return {
+		message:
+			logContentIfObject?.messages ||
+			logContentIfObject?.message ||
+			log.logContent ||
+			"",
+		metadata: { ...log.user, ...log.uniqueIdentifiers },
 	};
 };
 
@@ -31,35 +41,13 @@ const loggingControllerGenerator =
 		const cloudLog = logger.log(logName);
 
 		for (let log of logs) {
-			if (!log.args || !log.level) continue;
+			if (!log.level) continue;
 
 			const logEntry = cloudLog.entry(
 				generateLogMetadata(serviceName, log),
-				...(log.args || [])
+				formatLog(log)
 			);
-
-			let loggerFunction:
-				| LogFunction['info']
-				| LogFunction['debug']
-				| LogFunction['error']
-				| LogFunction['warning'];
-			switch (log.level) {
-				case "info":
-					loggerFunction = cloudLog.info;
-					break;
-				case "debug":
-					loggerFunction = cloudLog.debug;
-					break;
-				case "error":
-					loggerFunction = cloudLog.error;
-					break;
-				case "warn":
-					loggerFunction = cloudLog.warning;
-					break;
-				default:
-					loggerFunction = cloudLog.info;
-			}
-			loggerFunction(logEntry).catch((error: Error | unknown) => {
+			cloudLog.write(logEntry).catch((error) => {
 				if (onError) onError(error);
 			});
 		}

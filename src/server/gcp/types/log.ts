@@ -5,8 +5,9 @@ interface Log {
 		displayName?: string;
 	};
 	uniqueIdentifiers?: Record<string, unknown>;
-	args: string[];
+	logContent: string | { message: string };
 	level: "info" | "debug" | "warn" | "error";
+	sessionId?: string;
 }
 
 export default Log;

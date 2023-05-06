@@ -1,15 +1,43 @@
 [
 	{
-		"type": "info",
-		"args": ["User signed in"]
+		"level": "INFO",
+		"logContent": "User signed in"
 	},
 	{
-		"type": "error",
-		"args": ["Error with user credentials"],
-        "user": {
-            "uid": "uuid-v4",
-            "email": "user@email.provider.com",
-            "displayName": "User Name"
-        }
+		"level": "DEBUG",
+		"logContent": { "message": "Log with structured data" }
+	},
+	{
+		"level": "ERROR",
+		"logContent": "Error with user credentials",
+		"user": {
+			"uid": "uuid-v4",
+			"email": "user@email.provider.com",
+			"displayName": "User Name"
+		}
+	},
+	{
+		"level": "WARN",
+		"logContent": "Warning log with user credentials",
+		"user": {
+			"uid": "uuid-v4",
+			"email": "user@email.provider.com",
+			"displayName": "User Name"
+		},
+		"uniqueIdentifiers": {
+			"label": "unique-identifier-label-value"
+		}
+	},
+	{
+		"level": "DEBUG",
+		"logContent": { "messages": ["Debug log with", "multiple message bits"] },
+		"user": {
+			"uid": "uuid-v4",
+			"email": "user@email.provider.com",
+			"displayName": "User Name"
+		},
+		"uniqueIdentifiers": {
+			"label": "unique-identifier-label-value"
+		}
 	}
 ]
