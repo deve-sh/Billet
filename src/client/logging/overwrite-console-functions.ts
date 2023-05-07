@@ -14,6 +14,10 @@ const overWriteConsoleFunctions = (push: (log: Log) => void) => {
 		push(createLog("info")(args));
 		originalFunctions.log(...args);
 	};
+	console.info = (...args: (string | unknown)[]) => {
+		push(createLog("info")(args));
+		originalFunctions.log(...args);
+	};
 	console.error = (...args: (string | unknown)[]) => {
 		push(createLog("error")(args));
 		originalFunctions.error(...args);

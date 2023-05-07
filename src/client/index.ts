@@ -27,17 +27,17 @@ class FLog {
 	init(config: FLogClientConfig = { endpoint: "" }) {
 		if (this.initialized) return;
 
-		const { overwriteConsoleFunctions = true, endpoint } = config;
+		const { interceptNativeConsoleLogs = true, endpoint } = config;
 
 		if (!endpoint) throw new Error("FLog: Endpoint is required to send logs");
 
-		this.config = { overwriteConsoleFunctions, endpoint };
+		this.config = { interceptNativeConsoleLogs, endpoint };
 
 		this.setTabId();
 		this.setSessionId();
 		this.setSendLogsInterval();
 		this.mountUnloadListener();
-		this.overwriteConsoleFunctions();
+		this.interceptNativeConsoleLogs();
 	}
 
 	setUser = (user: User | null) => {
@@ -101,7 +101,7 @@ class FLog {
 	}
 
 	//#region Logging Functions
-	private overwriteConsoleFunctions() {
+	private interceptNativeConsoleLogs() {
 		overWriteConsoleFunctions(this.pushLogToQueue);
 	}
 	//#endregion
@@ -109,6 +109,7 @@ class FLog {
 	//#region Manual Logging Functions
 	public Logger = {
 		log: generateManualLoggingFunction("info", this.pushLogToQueue),
+		info: generateManualLoggingFunction("info", this.pushLogToQueue),
 		error: generateManualLoggingFunction("error", this.pushLogToQueue),
 		warn: generateManualLoggingFunction("warn", this.pushLogToQueue),
 		debug: generateManualLoggingFunction("debug", this.pushLogToQueue),

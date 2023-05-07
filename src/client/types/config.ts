@@ -1,6 +1,6 @@
 interface FLogClientConfig {
     endpoint: string;
-    overwriteConsoleFunctions?: boolean;
+    interceptNativeConsoleLogs?: boolean;
 };
 
 export default FLogClientConfig;
