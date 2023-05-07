@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "commonjs",
+		"allowJs": true,
+		"checkJs": true,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"outDir": "../dist/client",
+		"removeComments": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true
+	},
+	"include": ["../src/client/**/*"],
+	"exclude": [
+		"../node_modules",
+		"../src/server/tests/**/*",
+		"../src/client/tests/**/*"
+	]
+}

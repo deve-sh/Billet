@@ -4,9 +4,10 @@
 	"description": "Library to simplify logging to any platform from your frontend",
 	"main": "",
 	"scripts": {
-		"bundle-server-libs": "tsc --build tsconfig.server.json",
+		"bundle-client-libs": "tsc --build configs/tsconfig.client.json",
+		"bundle-server-libs": "tsc --build configs/tsconfig.server.json",
 		"prepublish": "node scripts/pre-publish",
-		"publish": "npm run bundle-server-libs && cd ./dist && npm run publish",
+		"publish": "npm run bundle-server-libs && npm run bundle-client-libs && cd ./dist && npm run publish",
 		"test": "vitest run"
 	},
 	"author": "Devesh Kumar",
@@ -19,6 +20,8 @@
 	"devDependencies": {
 		"@types/express": "^4.17.17",
 		"typescript": "^5.0.4",
-		"vitest": "^0.31.0"
+		"vitest": "^0.31.0",
+		"webpack": "^5.82.0",
+		"webpack-cli": "^5.1.0"
 	}
 }
