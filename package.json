@@ -7,7 +7,7 @@
 		"webpack-client": "webpack --config configs/webpack.client.config.js",
 		"bundle-client-libs": "tsc --build configs/tsconfig.client.json",
 		"bundle-server-libs": "tsc --build configs/tsconfig.server.json",
-		"publish": "npm run bundle-server-libs && npm run bundle-client-libs && npm run webpack-client && cd ./dist && node scripts/pre-publish && npm run publish",
+		"publish-lib": "npm run bundle-server-libs && npm run bundle-client-libs && npm run webpack-client && node scripts/pre-publish && cd ./dist && npm publish",
 		"test": "vitest run"
 	},
 	"author": "Devesh Kumar",
