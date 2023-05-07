@@ -7,7 +7,8 @@ interface Log {
 	properties?: Record<string, unknown>;
 	logContent: string | { message?: string; messages?: string };
 	level: "info" | "debug" | "warn" | "error";
-	sessionId?: string;
+	sessionId: string;
+	tabId: string;
 	createdAt: string;
 }
 

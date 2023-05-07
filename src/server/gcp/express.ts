@@ -27,6 +27,8 @@ const formatLog = (log: Log) => {
 			"",
 		metadata: {
 			...log.user,
+			tabId: log.tabId,
+			sessionId: log.sessionId,
 			properties: { ...log.properties },
 			createdAt: new Date(log.createdAt),
 		},
