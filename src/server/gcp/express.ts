@@ -11,6 +11,7 @@ const generateLogMetadata = (serviceName: string, log: Log) => {
 			labels: { service: serviceName },
 		},
 		severity: log.level.toUpperCase(),
+		timestamp: log.createdAt
 	};
 };
 
@@ -30,7 +31,6 @@ const formatLog = (log: Log) => {
 			tabId: log.tabId,
 			sessionId: log.sessionId,
 			properties: { ...log.properties },
-			createdAt: new Date(log.createdAt),
 		},
 	};
 };

@@ -1,11 +1,13 @@
 [
 	{
 		"level": "INFO",
-		"logContent": "User signed in"
+		"logContent": "User signed in",
+		"createdAt": "2023-05-04T00:00:00.000Z"
 	},
 	{
 		"level": "DEBUG",
-		"logContent": { "message": "Log with structured data" }
+		"logContent": { "message": "Log with structured data" },
+		"createdAt": "2023-05-04T00:00:00.000Z"
 	},
 	{
 		"level": "ERROR",
@@ -14,7 +16,8 @@
 			"uid": "uuid-v4",
 			"email": "user@email.provider.com",
 			"displayName": "User Name"
-		}
+		},
+		"createdAt": "2023-05-04T00:00:00.000Z"
 	},
 	{
 		"level": "WARN",
@@ -25,8 +28,9 @@
 			"displayName": "User Name"
 		},
 		"properties": {
-			"label": "unique-identifier-label-value"
-		}
+			"super-user": true
+		},
+		"createdAt": "2023-05-04T00:00:00.000Z"
 	},
 	{
 		"level": "DEBUG",
@@ -37,7 +41,8 @@
 			"displayName": "User Name"
 		},
 		"properties": {
-			"label": "unique-identifier-label-value"
-		}
+			"super-user": false
+		},
+		"createdAt": "2023-05-04T00:00:00.000Z"
 	}
 ]
