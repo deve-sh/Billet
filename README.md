@@ -11,6 +11,8 @@ Currently supports Google Cloud Logging with Express.
 
 First install the library to both your backend and frontend repositories.
 
+> **Note**: Make sure to always have the same version for f-log on both your frontend and backend, Otherwise there can be mismatches in the structure of data expected and returned.
+
 ```bash
 npm i f-log
 ```
@@ -61,6 +63,7 @@ FLog.setUser(null);
 
 ```javascript
 FLog.setProperty("isSuperAdmin", true);
+FLog.setProperty("release-id", "1.0.5-beta");
 ```
 
 These properties will be sent along with your logs to the server.
