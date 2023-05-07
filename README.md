@@ -26,9 +26,9 @@ FLog.init({ endpoint: "", interceptNativeConsoleLogs: true });
 Here:
 
 - `endpoint` is the URL you want to send your logs to, it could be an endpoint to a log ingestion pipeline or an endpoint on your backend server that is created using the backend SDK of F-Log.
-- `interceptNativeConsoleLogs` is a `boolean` value that will determine whether you want to intercept logs from your frontend app producted by native console functions, namely: `console.log`, `console.debug`, `console.warn` and `console.error`.
+- `interceptNativeConsoleLogs` is a `boolean` (By default: `true`) value that will determine whether you want to intercept logs from your frontend app producted by native console functions, namely: `console.log`, `console.debug`, `console.warn` and `console.error`.
 
-### Logging
+#### Logging
 
 If you've opted for intercepting native console functions, you don't have to do anything else, logs from your application will be automatically intercepted and sent to your backend server.
 
@@ -41,6 +41,29 @@ FLog.Logger.error("Error log with: " + error.message);
 FLog.Logger.warn("Warning");
 FLog.Logger.debug("Just debugging, how y'all doing?");
 ```
+
+#### User Identification
+
+You can tag user properties to your logs for tracking:
+
+```javascript
+FLog.setUser({
+	displayName: "user name",
+	uid: "<uuid>",
+	email: "user@service.com",
+});
+
+// If they log out
+FLog.setUser(null);
+```
+
+#### Additional property-based metadata
+
+```javascript
+FLog.setProperty("isSuperAdmin", true);
+```
+
+These properties will be sent along with your logs to the server.
 
 ### On the backend
 
