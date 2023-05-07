@@ -6,7 +6,8 @@ import type User from "./types/User";
 import type FLogClientConfig from "./types/config";
 
 import sendLogs from "./utils/send";
-import overWriteConsoleFunctions from "./utils/overwrite-console-functions";
+import overWriteConsoleFunctions from "./logging/overwrite-console-functions";
+import generateManualLoggingFunction from "./logging/manual-loggers";
 
 const LOG_SENDING_INTERVAL = 5000;
 
@@ -23,7 +24,7 @@ class FLog {
 
 	constructor() {}
 
-	init(config: FLogClientConfig = { endpoint: '' }) {
+	init(config: FLogClientConfig = { endpoint: "" }) {
 		if (this.initialized) return;
 
 		const { overwriteConsoleFunctions = true, endpoint } = config;
@@ -84,6 +85,11 @@ class FLog {
 		window.onbeforeunload = this.sendLogs;
 	};
 
+	private pushLogToQueue = (log: Log) => {
+		if (!this.initialized) return;
+		this.logs.push(log);
+	};
+
 	destroy() {
 		this.sendLogs();
 		this.logs = [];
@@ -96,8 +102,17 @@ class FLog {
 
 	//#region Logging Functions
 	private overwriteConsoleFunctions() {
-		overWriteConsoleFunctions(this.logs.push);
+		overWriteConsoleFunctions(this.pushLogToQueue);
 	}
+	//#endregion
+
+	//#region Manual Logging Functions
+	public Logger = {
+		log: generateManualLoggingFunction("info", this.pushLogToQueue),
+		error: generateManualLoggingFunction("error", this.pushLogToQueue),
+		warn: generateManualLoggingFunction("warn", this.pushLogToQueue),
+		debug: generateManualLoggingFunction("debug", this.pushLogToQueue),
+	};
 	//#endregion
 }
 
