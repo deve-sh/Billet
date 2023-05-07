@@ -1,6 +1,8 @@
+import type LogLevels from "./LogLevels";
+
 interface Log {
-	logContent: string | { message: string };
-	level: "info" | "debug" | "warn" | "error";
+	logContent: string | { message?: string; messages?: string[] };
+	level: LogLevels;
     createdAt: string;
 }
 

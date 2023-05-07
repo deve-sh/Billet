@@ -6,6 +6,7 @@ import type User from "./types/User";
 import type FLogClientConfig from "./types/config";
 
 import sendLogs from "./utils/send";
+import overWriteConsoleFunctions from "./utils/overwrite-console-functions";
 
 const LOG_SENDING_INTERVAL = 5000;
 
@@ -35,6 +36,7 @@ class FLog {
 		this.setSessionId();
 		this.setSendLogsInterval();
 		this.mountUnloadListener();
+        this.overwriteConsoleFunctions();
 	}
 
 	setUser = (user: User | null) => {
@@ -67,7 +69,7 @@ class FLog {
 			this.sessionId = sessionId;
 		}
 	};
-    
+
 	private sendLogs = () => {
 		if (this.logs.length)
 			sendLogs(this.config.endpoint, this.logs.map(this.processLog));
@@ -90,6 +92,12 @@ class FLog {
 		this.initialized = false;
 		this.config = { endpoint: "" };
 	}
+
+	//#region Logging Functions
+	private overwriteConsoleFunctions() {
+		overWriteConsoleFunctions(this.logs.push);
+	}
+	//#endregion
 }
 
 export default new FLog();
