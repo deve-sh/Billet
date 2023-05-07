@@ -23,7 +23,7 @@ class FLog {
 
 	constructor() {}
 
-	init(config: FLogClientConfig) {
+	init(config: FLogClientConfig = { endpoint: '' }) {
 		if (this.initialized) return;
 
 		const { overwriteConsoleFunctions = true, endpoint } = config;
