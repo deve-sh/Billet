@@ -3,7 +3,9 @@
 A seamless way to integrate a logging pipeline from your frontend to your backend.
 Currently supports Google Cloud Logging with Express.
 
-![How F-Log works](./docs/f-log-overview.png)
+<p align="center">
+    <img src="./docs/f-log-overview.png" alt="How F-Log essentially works"></img>
+</p>
 
 ## Setting it up
 
