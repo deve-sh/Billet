@@ -9,6 +9,7 @@ module.exports = {
 		library: {
 			name: "Flog",
 			type: "umd",
+			export: 'default'
 		},
 	},
 };
