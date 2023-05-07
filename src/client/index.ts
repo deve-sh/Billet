@@ -32,7 +32,7 @@ class FLog {
 		if (!endpoint) throw new Error("FLog: Endpoint is required to send logs");
 
 		this.config = { interceptNativeConsoleLogs, endpoint };
-
+		this.initialized = true;
 		this.setTabId();
 		this.setSessionId();
 		this.setSendLogsInterval();
