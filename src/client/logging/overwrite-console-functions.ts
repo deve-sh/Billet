@@ -30,6 +30,13 @@ const overWriteConsoleFunctions = (push: (log: Log) => void) => {
 		push(createLog("debug")(args));
 		originalFunctions.debug(...args);
 	};
+
+	return () => {
+		console.log = originalFunctions.log;
+		console.error = originalFunctions.error;
+		console.warn = originalFunctions.warn;
+		console.debug = originalFunctions.debug;
+	};
 };
 
 export default overWriteConsoleFunctions;

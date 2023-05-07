@@ -93,6 +93,7 @@ class FLog {
 	destroy() {
 		this.sendLogs();
 		this.logs = [];
+		this.resetIntercepting();
 		this.userInfo = null;
 		this.properties = {};
 		clearTimeout(this.sendLogsInterval);
@@ -101,8 +102,9 @@ class FLog {
 	}
 
 	//#region Logging Functions
+	private resetIntercepting;
 	private interceptNativeConsoleLogs() {
-		overWriteConsoleFunctions(this.pushLogToQueue);
+		this.resetIntercepting = overWriteConsoleFunctions(this.pushLogToQueue);
 	}
 	//#endregion
 
