@@ -1,13 +1,17 @@
 import type Log from "../types/Log";
 
-const randomRetryDelay = (backoff: number) =>
-	new Promise((resolve) =>
-		setTimeout(resolve, (backoff || 1) * 250 + Math.floor(50 * Math.random()))
-	);
+const randomRetryDelay = (backoff: number) => {
+	const randomInterval = (backoff || 1) * 250 + Math.floor(50 * Math.random());
+	return new Promise((resolve) => setTimeout(resolve, randomInterval));
+};
 
 const MAX_RETRIES = 3;
 
-const sendLogs = async (endpoint: string, events: Log[], retriesLeft = MAX_RETRIES) => {
+const sendLogs = async (
+	endpoint: string,
+	events: Log[],
+	retriesLeft = MAX_RETRIES
+) => {
 	try {
 		await fetch(endpoint, {
 			method: "POST",
