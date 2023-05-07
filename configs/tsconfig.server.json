@@ -15,5 +15,5 @@
 		"skipLibCheck": true
 	},
 	"include": ["../src/server/**/*"],
-	"exclude": ["../node_modules", "../src/server/tests/**/*", "../src/client/tests/**/*"]
+	"exclude": ["../node_modules", "../src/server/tests/**/*"]
 }
