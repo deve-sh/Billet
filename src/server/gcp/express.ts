@@ -25,7 +25,11 @@ const formatLog = (log: Log) => {
 			logContentIfObject?.message ||
 			log.logContent ||
 			"",
-		metadata: { ...log.user, ...log.uniqueIdentifiers },
+		metadata: {
+			...log.user,
+			properties: { ...log.properties },
+			createdAt: new Date(log.createdAt),
+		},
 	};
 };
 

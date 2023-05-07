@@ -4,10 +4,11 @@ interface Log {
 		email?: string;
 		displayName?: string;
 	};
-	uniqueIdentifiers?: Record<string, unknown>;
-	logContent: string | { message: string };
+	properties?: Record<string, unknown>;
+	logContent: string | { message?: string; messages?: string };
 	level: "info" | "debug" | "warn" | "error";
 	sessionId?: string;
+	createdAt: string;
 }
 
 export default Log;

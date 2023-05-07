@@ -24,7 +24,7 @@
 			"email": "user@email.provider.com",
 			"displayName": "User Name"
 		},
-		"uniqueIdentifiers": {
+		"properties": {
 			"label": "unique-identifier-label-value"
 		}
 	},
@@ -36,7 +36,7 @@
 			"email": "user@email.provider.com",
 			"displayName": "User Name"
 		},
-		"uniqueIdentifiers": {
+		"properties": {
 			"label": "unique-identifier-label-value"
 		}
 	}
