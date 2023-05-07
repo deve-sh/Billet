@@ -73,6 +73,7 @@ class FLog {
 	private sendLogs = () => {
 		if (this.logs.length)
 			sendLogs(this.config.endpoint, this.logs.map(this.processLog));
+		this.logs = [];
 	};
 
 	private setSendLogsInterval = () => {
