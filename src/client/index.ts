@@ -36,7 +36,7 @@ class FLog {
 		this.setSessionId();
 		this.setSendLogsInterval();
 		this.mountUnloadListener();
-        this.overwriteConsoleFunctions();
+		this.overwriteConsoleFunctions();
 	}
 
 	setUser = (user: User | null) => {
@@ -62,9 +62,9 @@ class FLog {
 	};
 
 	private setSessionId = () => {
-		this.sessionId = getCookie("flog_session_id");
-		if (!this.sessionId) {
-			const sessionId = uuid();
+		let sessionId = getCookie("flog_session_id");
+		if (!sessionId) {
+			sessionId = uuid();
 			setCookie("flog_session_id", sessionId);
 			this.sessionId = sessionId;
 		}
