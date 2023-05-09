@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { get as getCookie, set as setCookie } from "js-cookie";
+import cookie from "js-cookie";
 
 import type Log from "./types/Log";
 import type User from "./types/User";
@@ -37,7 +37,7 @@ class FLog {
 		this.setSessionId();
 		this.setSendLogsInterval();
 		this.mountUnloadListener();
-		this.interceptNativeConsoleLogs();
+		if (interceptNativeConsoleLogs) this.interceptNativeConsoleLogs();
 	}
 
 	setUser = (user: User | null) => {
@@ -63,10 +63,10 @@ class FLog {
 	};
 
 	private setSessionId = () => {
-		let sessionId = getCookie("flog_session_id");
+		let sessionId = cookie.get("flog_session_id");
 		if (!sessionId) {
 			sessionId = uuid();
-			setCookie("flog_session_id", sessionId);
+			cookie.set("flog_session_id", sessionId);
 			this.sessionId = sessionId;
 		}
 	};
