@@ -7,6 +7,20 @@ Currently supports Google Cloud Logging with Express.
     <img src="https://raw.githubusercontent.com/deve-sh/F-Log/main/docs/f-log-overview.png" alt="How F-Log essentially works"></img>
 </p>
 
+## The problem I'm trying to solve here
+
+Whether you work at a small startup or a large company, there is going to be a need to store or access the logs from your client's device at some point or the other. It could be to debug an error or it could be to understand user behaviour via a trail of logs.
+
+Either ways, you end up depending on exception catching software like Sentry that work well for, well, exception catching and everything related to that session. But what if what you're looking at is not an exception or if the exception is a known one and is handled? You lose out on all the useful logs for it unless you have logging setup.
+
+To do so, you usually need to setup a backend ingestion service and a client SDK/lib to send over logs. This library solves the grunt work required to do both of those things.
+
+### Good to haves
+
+A list of things that are not included in the package right now but will be picked up later:
+- Entropy based log filtering to hide sensitive data from logs.
+- Add more here if you can think of the tons of things that are missed.
+
 ## Setting it up
 
 First install the library to both your backend and frontend repositories.
