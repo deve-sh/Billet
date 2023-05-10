@@ -1,4 +1,4 @@
-import { it, expect, test, vi, beforeEach, afterEach, describe } from "vitest";
+import { it, expect, test, vi, beforeEach, afterEach, describe, afterAll } from "vitest";
 import FLog from "../index";
 
 // @ts-expect-error
@@ -9,15 +9,11 @@ FLog.init({
 	interceptNativeConsoleLogs: false,
 });
 
-beforeEach(() => {
-	vi.useFakeTimers();
-});
-
-afterEach(() => {
-	vi.useRealTimers();
-});
-
 describe("Manual logger tests", () => {
+	afterAll(() => {
+		FLog.destroy();
+	});
+	
 	it("should expose manual logging functions", () => {
 		expect(() => FLog.Logger).toBeInstanceOf(Object);
 		expect(() => FLog.Logger.log).toBeInstanceOf(Function);
