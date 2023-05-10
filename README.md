@@ -1,10 +1,10 @@
-# F-Log 📒
+# Billet 📒
 
 A seamless way to integrate a logging pipeline from your frontend to your backend.
 Currently supports Google Cloud Logging with Express.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/deve-sh/F-Log/main/docs/f-log-overview.png" alt="How F-Log essentially works"></img>
+    <img src="https://raw.githubusercontent.com/deve-sh/Billet/main/docs/billet-overview.png" alt="How Billet essentially works"></img>
 </p>
 
 ## The problem I'm trying to solve here
@@ -25,23 +25,23 @@ A list of things that are not included in the package right now but will be pick
 
 First install the library to both your backend and frontend repositories.
 
-> **Note**: Make sure to always have the same version for f-log on both your frontend and backend, Otherwise there can be mismatches in the structure of data expected and returned.
+> **Note**: Make sure to always have the same version for billet on both your frontend and backend, Otherwise there can be mismatches in the structure of data expected and returned.
 
 ```bash
-npm i f-log
+npm i billet
 ```
 
 ### On the frontend
 
 ```javascript
-import FLog from "f-log/client";
+import billet from "billet/client";
 
-FLog.init({ endpoint: "", interceptNativeConsoleLogs: true });
+billet.init({ endpoint: "", interceptNativeConsoleLogs: true });
 ```
 
 Here:
 
-- `endpoint` is the URL you want to send your logs to, it could be an endpoint to a log ingestion pipeline or an endpoint on your backend server that is created using the backend SDK of F-Log.
+- `endpoint` is the URL you want to send your logs to, it could be an endpoint to a log ingestion pipeline or an endpoint on your backend server that is created using the backend SDK of Billet.
 - `interceptNativeConsoleLogs` is a `boolean` (By default: `true`) value that will determine whether you want to intercept logs from your frontend app producted by native console functions, namely: `console.log`, `console.debug`, `console.warn` and `console.error`.
 
 #### Logging
@@ -51,11 +51,11 @@ If you've opted for intercepting native console functions, you don't have to do 
 If you want to opt for a manual approach you can use:
 
 ```javascript
-FLog.Logger.info("Info log");
-FLog.Logger.log("Normal Info log with", "varying", { types }, [of], data);
-FLog.Logger.error("Error log with: " + error.message);
-FLog.Logger.warn("Warning");
-FLog.Logger.debug("Just debugging, how y'all doing?");
+billet.Logger.info("Info log");
+billet.Logger.log("Normal Info log with", "varying", { types }, [of], data);
+billet.Logger.error("Error log with: " + error.message);
+billet.Logger.warn("Warning");
+billet.Logger.debug("Just debugging, how y'all doing?");
 ```
 
 #### User Identification
@@ -63,21 +63,21 @@ FLog.Logger.debug("Just debugging, how y'all doing?");
 You can tag user properties to your logs for tracking:
 
 ```javascript
-FLog.setUser({
+billet.setUser({
 	displayName: "user name",
 	uid: "<uuid>",
 	email: "user@service.com",
 });
 
 // If they log out
-FLog.setUser(null);
+billet.setUser(null);
 ```
 
 #### Additional property-based metadata
 
 ```javascript
-FLog.setProperty("isSuperAdmin", true);
-FLog.setProperty("release-id", "1.0.5-beta");
+billet.setProperty("isSuperAdmin", true);
+billet.setProperty("release-id", "1.0.5-beta");
 ```
 
 These properties will be sent along with your logs to the server.

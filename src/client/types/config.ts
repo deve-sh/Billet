@@ -1,6 +1,6 @@
-interface FLogClientConfig {
+interface BilletClientConfig {
     endpoint: string;
     interceptNativeConsoleLogs?: boolean;
 };
 
-export default FLogClientConfig;
+export default BilletClientConfig;

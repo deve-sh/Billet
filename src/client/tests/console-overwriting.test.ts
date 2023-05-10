@@ -1,5 +1,5 @@
 import { it, expect, describe, afterAll, test, beforeAll, vi } from "vitest";
-import FLog from "../index";
+import billet from "../index";
 import Log from "../types/Log";
 
 const originalIntervalFunction = globalThis.setInterval;
@@ -22,25 +22,25 @@ describe("Console overwriting tests", () => {
 				globalThis.setInterval(callback, 2);
 			}, 2);
 
-		FLog.init({
+		billet.init({
 			endpoint: "https://mock-endpoint",
 			interceptNativeConsoleLogs: true,
 		});
 	});
 
 	afterAll(() => {
-		FLog.destroy();
+		billet.destroy();
 		globalThis.setInterval = originalIntervalFunction;
 	});
 
 	it("should overwrite console functions and properly invoke them", async () => {
-		console.log("Info Log from F-Log");
-		console.info("Info Log from F-Log");
-		console.error("Error Log from F-Log");
-		console.debug("Debug Log from F-Log");
-		console.warn("Warning Log from F-Log");
+		console.log("Info Log from Billet");
+		console.info("Info Log from Billet");
+		console.error("Error Log from Billet");
+		console.debug("Debug Log from Billet");
+		console.warn("Warning Log from Billet");
 		// @ts-expect-error
-		const logsQueue = FLog.logs;
+		const logsQueue = billet.logs;
 		expect(logsQueue).toHaveLength(5);
 		await new Promise((resolve) => setTimeout(resolve, 10));
 		expect(mockSendFunctionArgs).toBeTruthy();

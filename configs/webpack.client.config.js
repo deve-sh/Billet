@@ -7,7 +7,7 @@ module.exports = {
 		filename: "index.js",
 		globalObject: "this",
 		library: {
-			name: "FLog",
+			name: "billet",
 			type: "umd",
 			export: "default",
 		},

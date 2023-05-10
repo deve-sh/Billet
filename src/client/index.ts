@@ -3,7 +3,7 @@ import cookie from "js-cookie";
 
 import type Log from "./types/Log";
 import type User from "./types/User";
-import type FLogClientConfig from "./types/config";
+import type BilletClientConfig from "./types/config";
 
 import sendLogs from "./utils/send";
 import overWriteConsoleFunctions from "./logging/overwrite-console-functions";
@@ -11,9 +11,9 @@ import generateManualLoggingFunction from "./logging/manual-loggers";
 
 const LOG_SENDING_INTERVAL = 5000;
 
-class FLog {
+class Billet {
 	private initialized: boolean = false;
-	private config: FLogClientConfig = { endpoint: "" };
+	private config: BilletClientConfig = { endpoint: "" };
 	private logs: Log[] = [];
 	private userInfo?: User | null;
 	private properties: Record<string, unknown> = {};
@@ -24,12 +24,12 @@ class FLog {
 
 	constructor() {}
 
-	init(config: FLogClientConfig = { endpoint: "" }) {
+	init(config: BilletClientConfig = { endpoint: "" }) {
 		if (this.initialized) return;
 
 		const { interceptNativeConsoleLogs = true, endpoint } = config;
 
-		if (!endpoint) throw new Error("FLog: Endpoint is required to send logs");
+		if (!endpoint) throw new Error("Billet: Endpoint is required to send logs");
 
 		this.config = { interceptNativeConsoleLogs, endpoint };
 		this.initialized = true;
@@ -63,10 +63,10 @@ class FLog {
 	};
 
 	private setSessionId = () => {
-		let sessionId = cookie.get("flog_session_id");
+		let sessionId = cookie.get("billet_session_id");
 		if (!sessionId) {
 			sessionId = uuid();
-			cookie.set("flog_session_id", sessionId);
+			cookie.set("billet_session_id", sessionId);
 			this.sessionId = sessionId;
 		}
 	};
@@ -119,4 +119,4 @@ class FLog {
 	//#endregion
 }
 
-export default new FLog();
+export default new Billet();
