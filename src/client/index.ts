@@ -93,7 +93,7 @@ class FLog {
 	destroy() {
 		this.sendLogs();
 		this.logs = [];
-		this.resetIntercepting();
+		this.resetIntercepting?.();
 		this.userInfo = null;
 		this.properties = {};
 		clearTimeout(this.sendLogsInterval);
