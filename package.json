@@ -1,6 +1,6 @@
 {
 	"name": "f-log",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Library to simplify logging to any platform from your frontend",
 	"main": "",
 	"scripts": {
